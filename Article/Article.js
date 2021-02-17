@@ -1,5 +1,6 @@
 /* This is the data we will be using to create our articles */
 /* Look over this data, then proceed to line 91*/
+
 const data = [
   {
     title: 'Lambda School Students: "We\'re the best!"',
@@ -111,3 +112,69 @@ const data = [
 
   Step 5: Add a new article to the array. Make sure it is in the same format as the others. Refresh the page to see the new article.
 */
+
+//mapping out the skeleton and creating the panel component function and caller
+
+
+//mapping out the skeleton and creating the panel component function and caller
+
+
+const createArticle = (title,date,firstParagraph, secondParagraph,thirdParagraph) =>{
+  //create all the elements that are in the component. These are florting, unattached, elements
+  // {/* <div class="article">
+  // <h2>{title of the article}</h2>
+  // <p class="date">{date of the article}</p>
+  
+  // {three separate paragraph elements}
+  
+  // <span class='expandButton'></span>
+  // </div> */}
+  
+    const article = document.createElement('div');
+    const dTitle = document.createElement('h2');
+    const dDate = document.createElement('p');
+    const firstPara = document.createElement('p');
+    const secondPara = document.createElement('p');
+    const thirdPara = document.createElement('p');
+    const button = document.createElement('span')
+  
+  
+  //adding classes to style the components
+  article.classList.add('article');
+  dDate.classList.add('date');
+  button.classList.add('expandButton');
+  
+  
+  //adding content inside of buttons & text elements
+  const open = '\u25bc' //unicode triangle
+  button.textContent = open;
+  
+  dTitle.textContent = title;
+  dDate.textContent = date;
+  firstPara.textContent = firstParagraph;
+  secondPara.textContent = secondParagraph;
+  thirdPara.textContent = thirdParagraph;
+  button.textContent = open;
+  
+  //create HTML structure by making some elements children of parent elements. Parent elements can be a child of grandparents
+  article.appendChild(dTitle);
+  article.appendChild(dDate);
+  article.appendChild(firstPara)
+  article.appendChild(secondPara);
+  article.appendChild(thirdPara);
+  article.appendChild(button);
+  
+  // This event listener is called in the article. When clicked, the buttons will toggle in display.
+  
+  button.addEventListener('click', ()=>{
+    article.classList.toggle('article-open')
+  })
+  
+    return article; //returns the article
+  }
+  //Step 3
+  const articles = document.querySelector('.articles');
+  //Step 4 and 5
+  data.forEach((data)=>{
+    articles.appendChild(createArticle(data.title, data.date, data.firstParagraph, data.secondParagraph, data.thirdParagraph))
+  })
